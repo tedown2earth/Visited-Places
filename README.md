@@ -9,6 +9,11 @@ This project focuses on using constructors, prototypes, and test-driven developm
 
 ---
 
+## Live Site
+https://tedown2earth.github.io/Visited-Places/
+
+---
+
 ## Project Goals
 - Practice creating objects using constructors
 - Use prototypes to define shared methods
