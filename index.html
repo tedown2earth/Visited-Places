@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Places I've Been</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1><u>Places I've Been</u></h1>
+
+    <form id="placeForm">
+      <input id="location" type="text" placeholder="Location" required>
+      <input id="landmarks" type="text" placeholder="Landmarks">
+      <input id="season" type="text" placeholder=" Time of Year to Visit">
+      <textarea id="notes" placeholder="Notes"></textarea>
+      <button type="submit">Add Place</button>
+    </form>
+
+    <ul id="placesList"></ul>
+
+    <div id="placeDetails">
+      <p class="hint">Click a place to see details</p>
+    </div>
+  </div>
+
+  <script src="js/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: cadetblue;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  background-color: rgb(38, 174, 243);
+  border: 3px solid black;
+  color:black;
+  padding: 30px;
+}
+
+form {
+  
+  margin: 0 auto 20px auto;
+  background-color: #ffffff;
+  padding: 15px;
+  border: 1px solid #ccc;
+}
+
+
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+}
+
+textarea {
+  height: 70px;
+}
+
+button {
+  width: 100%;
+  padding: 8px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#placesList {
+  max-width: 400px;
+  margin: 0 auto 20px auto;
+  padding: 0;
+}
+
+#placesList li {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 8px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+#placeDetails {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 15px;
+  border: 1px solid #ccc;
+}
