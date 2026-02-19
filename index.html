@@ -1,48 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Places I've Been</title>
-  <link rel="stylesheet" href="./style.css">
-</head>
-<body>
-
-      <h1>Places I've Been</h1>
+<html>
+    <head>
+        <title>Address Book</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1><u>Places you have travelled🗺️</u></h1>
+       <h4> Log all travels and memories of places you have travelled.</h4>
 
         <!-- Input Form -->
-    <form id="placeForm" >
-
+<form id="addressInput" >
+    
+    <br>
     <input type="text" id="location" placeholder="Location" required>
     <input type="text" id="timeOfYear" placeholder="Time of Year">
-    <input  type="text" id="landmarks" placeholder="Landmark">
+    <input  type="text" id="landmarks" placeholder="Landmarks">
     <textarea name="Notes" id="notes" placeholder="Your thoughts,memeories,unforgetable experiences"></textarea>
-    
+    <br>
     <button type="button" onclick="handleAddPlace()" class="button">Add Place</button>
 </form>
+    <section class="card">
+<!-- List of added places -->
+<div id="placesContainer">
 
-
-      <!-- List of added places -->
-    <div id="placesContainer"></div>
-
-         <!-- Empty State -->
+    <!-- Empty State -->
     <div class="empty" id="emptyState">
         
-        <p>No places added yet. Start tracking your travels!</p>
+        No places added yet. Start tracking your travels!
     </div>
 
-    <!-- Places will appear here -->
+    <!-- Places will render here -->
     <div id="placesList"></div>
 
 </div>
 
 
-    <!-- Details -->
+<!-- Details -->
 <div class="details" id="details">
     
-    <p>Select a place from the list to view details</p>
+    Select a place from the list to view details
 </div>
-<script src="js/script.js"></script>
+</section>
+<script src="script.js"></script>
     </body>
 </html>
-
-    

@@ -1,76 +1,145 @@
+// Constructor
+function PlaceManager() {
+    this.places = {};  
+    this.currentId = 0; 
+};
 
-function Place(location, landmarks, season, notes) {
-  this.location = location;
-  this.landmarks = landmarks;
-  this.season = season;
-  this.notes = notes;
-  this.id = null;
+// Id generator
+PlaceManager.prototype.assignId = function() {
+    this.currentId++;
+    return this.currentId;
+};
+
+PlaceManager.prototype.addPlace = function(place) {
+    const id = this.assignId();   
+    place.id = id;                
+    this.places[id] = place;      
+};
+
+PlaceManager.prototype.getPlace = function(id) {
+    return this.places[id];
+};
+
+
+// Remove task
+PlaceManager.prototype.deletePlace = function(id) {
+    if (this.places[id]) { 
+        delete this.places[id];
+        return true; 
+    } 
+    return false;
+    };
+
+  function Place(location, timeOfYear, landmarks, notes) {
+    this.location = location;
+    this.timeOfYear = timeOfYear;
+    this.landmarks = landmarks.split(",")
+    this.notes = notes;
+    this.id = null   // Given by generator
 }
 
-Place.prototype.summary = function () {
-  return this.location + " (" + this.season + ")";
-};
+// UI & DOM manipulationm
+const myPlaces = new PlaceManager();
 
-function PlacesList() {
-  this.places = {};
-  this.currentId = 0;
+// DOM Elements
+const listEl = document.getElementById(`placesList`)
+
+// HANDLER: Add Button Click
+   function handleAddPlace() {
+
+    const locIn = document.getElementById("location");
+    const timeIn = document.getElementById("timeOfYear");
+    const landIn = document.getElementById("landmarks");
+    const notesIn = document.getElementById("notes");
+
+    // 1. Create Object
+    const newPlace = new Place(
+        locIn.value,
+        timeIn.value,
+        landIn.value,
+        notesIn.value
+    );
+
+    // 2. Store Data
+    myPlaces.addPlace(newPlace);
+
+    // 3. Update UI
+    renderPlaces();
+
+    // 4. Reset Inputs
+    locIn.value = "";
+    timeIn.value = "";
+    landIn.value = "";
+    notesIn.value = "";
 }
 
-PlacesList.prototype.assignId = function () {
-  this.currentId += 1;
-  return this.currentId;
-};
+function handleDeletePlace(id) {
 
-PlacesList.prototype.addPlace = function (place) {
-  place.id = this.assignId();
-  this.places[place.id] = place;
-};
+    if (confirm("Delete this place?")) {
+        myPlaces.deletePlace(id);
+        renderPlaces();
+    }
+}
 
-PlacesList.prototype.findPlace = function (id) {
-  return this.places[id];
-};
+function renderPlaces() {
 
+    const list = document.getElementById("placesList");
+    const emptyState = document.getElementById("emptyState");
 
-const placesList = new PlacesList();
+    const placeIds = Object.keys(myPlaces.places);
 
-function displayPlaces() {
-  const placesUl = document.getElementById("placesList");
-  placesUl.innerHTML = "";
+// Show empty text if list is 0
+if (placeIds.length === 0) {
+   emptyState.style.display = "block"
+   list.innerHTML = "";
+   return;
+}
 
-  for (let id in placesList.places) {
-    const li = document.createElement("li");
-    li.textContent = placesList.places[id].summary();
-    li.addEventListener("click", function () {
-      showPlaceDetails(id);
+// Hide text when place is added
+emptyState.style.display = "none";
+list.innerHTML = "";
+
+// Display places
+placeIds.forEach(id => {
+
+        const place = myPlaces.places[id];
+
+        const card = document.createElement("div");
+        card.className = "place-card";
+
+        card.innerHTML = `
+        <div  class="place-header">
+            <h3>📍 ${place.location}</h3>
+            <p>${place.timeOfYear || ""}</p>
+            <button onclick="event.stopPropagation(); handleDeletePlace(${id})">
+                🗑️
+            </button>
+        </div>
+        `;
+
+        card.addEventListener("click", function() {
+            renderDetails(id);
+        });
+
+        list.appendChild(card);
     });
-    placesUl.appendChild(li);
-  }
 }
 
-function showPlaceDetails(id) {
-  const place = placesList.findPlace(id);
-  const detailsDiv = document.getElementById("placeDetails");
+    function renderDetails(id) {
 
-  detailsDiv.innerHTML = `
-    <h2>${place.location}</h2>
-    <p><strong>Landmarks:</strong> ${place.landmarks}</p>
-    <p><strong>Best Time:</strong> ${place.season}</p>
-    <p><strong>Notes:</strong> ${place.notes}</p>
-  `;
+    const place = myPlaces.getPlace(id);
+    const details = document.getElementById("details");
+
+    details.innerHTML = `
+        <h2>🌍 ${place.location}</h2>
+        <p><strong>Time:</strong> ${place.timeOfYear}</p>
+
+        <h3>🏛️ Landmarks</h3>
+        <ul>
+            ${place.landmarks.map(l => `<li>${l.trim()}</li>`).join("")}
+        </ul>
+
+        <h3>📝 Notes</h3>
+        <p>${place.notes}</p>
+    `;
 }
-
-
-document.getElementById("placeForm").addEventListener("submit", function (event) {
-  event.preventDefault();
-
-  const location = document.getElementById("location").value;
-  const landmarks = document.getElementById("landmarks").value;
-  const season = document.getElementById("season").value;
-  const notes = document.getElementById("notes").value;
-
-  const newPlace = new Place(location, landmarks, season, notes);
-  placesList.addPlace(newPlace);
-
-  displayPlaces();
-  event.target.reset();
-});
