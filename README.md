@@ -14,13 +14,13 @@ https://tedown2earth.github.io/Visited-Places/
 
 ---
 
-## Project Goals
-- Practice creating objects using constructors
-- Use prototypes to define shared methods
-- Apply test-driven development for business logic
-- Separate business logic from user interface logic
-
----
+## Features
+- Add places you have visited with location, time of year, landmarks, and personal notes.
+- Click on a place to view detailed information
+- Delete a place when needed
+- Empty state when no places are logged yet
+ 
+ ---
 
 ## Technologies Used
 - HTML
@@ -29,17 +29,7 @@ https://tedown2earth.github.io/Visited-Places/
 
 ---
 
-## Business Logic
 
-### Constructors
-- `Place` – creates a place object
-- `PlacesList` – stores and manages multiple places
-
-### Prototypes
-- `Place.prototype.summary()`
-- `PlacesList.prototype.addPlace()`
-- `PlacesList.prototype.findPlace()`
-- `PlacesList.prototype.assignId()`
 
 
 
