@@ -7,24 +7,42 @@
 </head>
 <body>
 
-  <div class="container">
-    <h1><u>Places I've Been</u></h1>
+      <h1><u>Places I've Been</u></h1>
 
-    <form id="placeForm">
-      <input id="location" type="text" placeholder="Location" required>
-      <input id="landmarks" type="text" placeholder="Landmarks">
-      <input id="season" type="text" placeholder=" Time of Year to Visit">
-      <textarea id="notes" placeholder="Notes"></textarea>
-      <button type="submit">Add Place</button>
-    </form>
+        <!-- Input Form -->
+    <form id="placeForm" >
+      
+    <input type="text" id="location" placeholder="Location📍" required>
+    <input type="text" id="timeOfYear" placeholder="Time of Year🕰️">
+    <input  type="text" id="landmarks" placeholder="Landmarks🏛️">
+    <textarea name="Notes" id="notes" placeholder="Your thoughts,memeories,unforgetable experiences"></textarea>
+    <br>
+    <button type="button" onclick="handleAddPlace()" class="button">Add Place</button>
+</form>
 
-    <ul id="placesList"></ul>
 
-    <div id="placeDetails">
-      <p class="hint">Click a place to see details</p>
+      <!-- List of added places -->
+    <div id="placesContainer"></div>
+
+         <!-- Empty State -->
+    <div class="empty" id="emptyState">
+        
+        <p>No places added yet. Start tracking your travels!</p>
     </div>
-  </div>
 
-  <script src="js/scripts.js"></script>
-</body>
+    <!-- Places will appear here -->
+    <div id="placesList"></div>
+
+</div>
+
+
+    <!-- Details -->
+<div class="details" id="details">
+    
+    <p>Select a place from the list to view details</p>
+</div>
+<script src="js/script.js"></script>
+    </body>
 </html>
+
+    
