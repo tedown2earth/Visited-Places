@@ -37,3 +37,13 @@ button:hover {
    transform: scale(1.1); 
     background: #004af7;
 }
+h1{
+  text-align: center;
+  border: none;
+  padding: 15px;
+  color: crimson;
+  background-color: #000000;
+}
+body{
+  background-color: burlywood;
+}
